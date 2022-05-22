@@ -1,0 +1,30 @@
+﻿@model List<ormilitarism.Models.like>
+@{
+    ViewBag.Title = "likedetal";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+
+@foreach (var item in Model)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Basliq: @item.Post.Title.titlename</h6>
+        </div>
+        <div class="card-body">
+            <p>
+                Beyenilen post: @item.Post.postmezmun
+            </p>
+            <p>Beyenen: @item.Post.Customer.customername</p>
+        </div>
+    </div>
+
+    <h3> </h3>
+
+
+
+
+
+}

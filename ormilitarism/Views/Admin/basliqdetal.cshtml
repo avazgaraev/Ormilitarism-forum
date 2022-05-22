@@ -1,0 +1,49 @@
+﻿@model ormilitarism.Models.title
+@{
+    ViewBag.Title = "basliqdetal";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+
+
+<h3>@Model.titlename </h3>
+
+<p>@Model.Customer.customername</p>
+@if (Model.sorguid == 1)
+{
+    <p class="text-warning">@Model.Sorgu.sorguad</p>
+}
+else if (Model.sorguid == 2)
+{
+    <p class="text-success">@Model.Sorgu.sorguad</p>
+
+}
+else
+{
+    <p class="text-danger">@Model.Sorgu.sorguad</p>
+
+}
+@foreach (var item in Model.Posts)
+{
+    <h1>@item.postmezmun</h1>
+}
+
+@if (Model.sorguid == 2)
+{
+    <a href="~/admin/danger/@Model.titleid" onclick="confirm('Are you sure')" class="btn-danger text-decoration-none ml-2 mt-3" style="border-radius: 5px; padding: 30px; float: left"> Sil</a>
+
+}
+else if (Model.sorguid == 3)
+{
+    <a href="~/admin/success/@Model.titleid" onclick="confirm('Are you sure')" class="btn-success text-decoration-none ml-2 mt-3" style="border-radius:5px; padding: 30px; float: left"> Təsdiqlə</a>
+
+}
+else
+{
+
+    <a href="~/admin/success/@Model.titleid" onclick="return confirm('Are you sure')" class="btn-success text-decoration-none ml-2 mt-3" style="border-radius:5px; padding: 30px; float: left"> Təsdiqlə</a>
+    <a href="~/admin/danger/@Model.titleid" onclick="confirm('Are you sure')" class="btn-danger text-decoration-none ml-2 mt-3" style="border-radius: 5px; padding: 30px; float: left"> Sil</a>
+}

@@ -1,0 +1,295 @@
+﻿@using ormilitarism.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<favorit>
+@{
+    ViewBag.Title = "favview";
+    Layout = "~/Shared/userlayout.cshtml";
+}
+
+
+@Html.Action("partnav")
+<section id="indexContent" class="container">
+    <section id="contentInner" class="dflex w-100">
+        <div class="w-30 left  ">
+            <div id="partial">
+                @Html.Action("daily", "home")
+            </div>
+            @Html.Action("mostpop", "home")
+
+        </div>
+
+
+
+        <div class="w-70 right">
+            @using (Html.BeginForm("favview", "home", FormMethod.Get))
+            {
+
+                <div class="sorters m20">
+                    @Html.Label("Açar söz")
+                    @Html.TextBox("p")
+
+                    <div class="form-inner">
+                        <label for="sortBY">Syrala:</label>
+                        @*<select id="filter" name="filter">
+                            <option name="filter" value="basliq">favoritleriniz</option>
+                            <option name="filter" value="postlar">Cavabladiginiz postlar</option>
+                        </select>*@
+
+                        <select id="sortBY" name="sortBY">
+                            <option name="sortBY" value="new">En jeni</option>
+                            <option name="sortBY" value="popular">En chox oxunan</option>
+                        </select>
+
+                    </div>
+                    <label for="say">Neçə neçə görmək istiyirsən:</label>
+                    <select id="say" name="say">
+                        <option name="say" value="5">5</option>
+                        <option name="say" value="7">7</option>
+                        <option name="say" value="10">10</option>
+                    </select>
+                    @*<span>sırala: </span><a href="#">reytinq</a> | <a href="#">zaman</a> | <a href="~/customer/mytitles">favoritlerim</a>*@
+
+                    <button class="normal">Axtar</button>
+                </div>
+            }
+            <h2>favview</h2>
+            @foreach (var favoritler in Model)
+            {
+                var postlar = favoritler.Post.Title.Posts.OrderBy(x => x.posttime).First();
+
+
+
+
+                <div class="post1">
+                    <div class="inner">
+                        <a href="~/home/onetopic/@favoritler.Post.Title.titleid">
+                            <h4>@favoritler.Post.Title.titlename </h4>
+                        </a>
+                        <p>
+                            @postlar.postmezmun
+                            <span class="dots">...</span><span class="more">
+                                Ukrayna
+                                Silahlı Qüvvələri Quru Qoşunları, Hərbi Hava Qüvvələri, Hərbi Dəniz Qüvvələri və Desant
+                                Qoşunlarından ibarətdir.
+                            </span>
+                        </p>
+                        <a class="showRest">
+                            ardını oxu <i class="fa-solid fa-angles-down"></i>
+
+                        </a>
+                    </div>
+
+                    <div class="imgHolder dflex">
+
+                        @foreach (var postsekil in postlar.Postimgs)
+                        {
+                            if (postsekil.imgname is null)
+                            {
+
+                            }
+                            else
+                            {
+
+                                <div>
+
+                                    <img src="@postsekil.imgname" />
+                                </div>
+                            }
+
+                        }
+
+
+
+
+                        <img class="w-100 imgMain" src="" alt="">
+                    </div>
+
+                    <div class="dflex juspb">
+                        <div class="icons">
+                            @*<form class="likeform" method="post" action="~/home/likeninc/">
+                            @Html.HiddenFor(x => postlar.postid, new { @class = "postidpp" })
+                            @{int postaid = @postlar.postid;}
+
+                            <button class="like" style="cursor:pointer"  >
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <br> <span class="likec" name="likec">@postlar.postlikecount</span>
+                            </button>
+                        </form>*@
+                            @{ var likelar = postlar.Likes.Where(x => x.postid == postlar.postid).ToList();}
+                            @if (likelar.Count() == 0)
+                            {
+                                <a onclick="DeleteSchedule(@postlar.postid)" class="like  " id="like_@postlar.postid" style="cursor:pointer">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    <br> <span class="likec @postlar.postid" id="@postlar.postid" name="likec">@postlar.postlikecount</span>
+                                </a>
+                            }
+                            else if (likelar.Count() > 0)
+                            {
+
+                                if (likelar.Select(x => x.custname).Contains(HttpContext.Current.User.Identity.Name))
+                                {
+
+
+
+                                    <a onclick="DeleteSchedule(@postlar.postid)" class="like active " id="like_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <br> <span class="likec @postlar.postid" id="@postlar.postid" name="likec">@postlar.postlikecount</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="DeleteSchedule(@postlar.postid)" class="like" id="like_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <br> <span class="likec @postlar.postid" id="@postlar.postid" name="likec">@postlar.postlikecount</span>
+                                    </a>
+                                }
+
+                            }
+
+
+
+
+                            @{ var favlar = postlar.Favorits.Where(x => x.postid == postlar.postid).ToList();}
+                            @if (favlar.Count() == 0)
+                            {
+                                <a onclick="favaction(@postlar.postid)" class="favor  " id="favorite_@postlar.postid" style="cursor:pointer">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                    <br> <span class="favorc favcount_@postlar.postid" id="fav_@postlar.postid" name="likec">@postlar.postfavcount</span>
+                                </a>
+                            }
+                            else if (favlar.Count() > 0)
+                            {
+
+                                if (favlar.Select(x => x.custname).Contains(HttpContext.Current.User.Identity.Name))
+                                {
+
+
+
+                                    <a onclick="favaction(@postlar.postid)" class="favor active " id="favorite_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <br> <span class="favorc favcount_@postlar.postid" id="fav_@postlar.postid" name="likec">@postlar.postfavcount</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="favaction(@postlar.postid)" class="favor" id="favorite_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <br> <span class="favorc favcount_@postlar.postid" id="fav_@postlar.postid" name="likec">@postlar.postfavcount</span>
+                                    </a>
+                                }
+
+                            }
+
+                        </div>
+                        <div class="share">
+                            <p class=" shareIcon">
+                                <i class="fa-solid fa-ellipsis"></i>
+                                <span class="shareList">
+                                    <a href="#">Paylaş</a>
+                                    <a href="#">Şikayət et</a>
+                                    <a href="#">Cavabla</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="postUser dflex">
+                        <div class="postInfo  ">
+                            <a href="#">@@@postlar.Customer.customername</a>
+                            <p>@postlar.Customer.registertime.ToShortDateString()</p>
+                        </div>
+                        <div class="profPhoto">
+                            <img src="@postlar.Customer.customerimg" alt="">
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            <style>
+                .pagination {
+                    display: flex
+                }
+
+                    .pagination li.active a {
+                        background-color: transparent;
+                        color: black;
+                        cursor: auto
+                    }
+            </style>
+            <div class="m20">
+                <div class="select">
+                    <br />
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("favview", new { page, p = Request.Params["p"], sortBY = Request.Params["sortBY"], say = Request.Params["say"] }), new PagedListRenderOptions
+               {
+                   DisplayLinkToIndividualPages = true,
+                   DisplayPageCountAndCurrentLocation = false,
+                   MaximumPageNumbersToDisplay = 5,
+               })
+
+
+                    @*<i class="fa-solid fa-angle-down"></i>*@
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <script>
+        function DeleteSchedule(id) {
+            var likedcount = parseInt($('#' + id).text())
+            //console.log($(this).data("id"))
+             @*var url = '@Url.Action("likeinc", "home")?id=' + id;*@
+            $.ajax({
+                type: 'POST',
+                url: '/Home/likeinc/' + id,
+                data: { id: id, likecount: likedcount },
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function func(fd) {
+                    /*$('.likec').hasClass('.' + id).html(fd)*/
+                    if ($('.likec').hasClass(id)) {
+                        $('#' + id).html(fd)
+                        console.log(fd)
+                        $('#like_'  + id ).toggleClass("active")
+                    return fd
+                    }
+
+                }
+            });
+        return false;
+    }
+        </script>
+
+        <script>
+        function favaction(id) {
+            var favcount = parseInt($('#fav_' + id).text())
+            console.log(favcount)
+            //console.log($(this).data("id"))
+             @*var url = '@Url.Action("likeinc", "home")?id=' + id;*@
+            $.ajax({
+                type: 'POST',
+                url: '/Home/favinc/' + id,
+                data: { id: id, favcount: favcount },
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function func(fd) {
+                    /*$('.likec').hasClass('.' + id).html(fd)*/
+                    if ($('.favorc').hasClass('favcount_' + id)) {
+                        $('#fav_' + id).html(fd)
+                        console.log(fd)
+                        $('#favorite_'  + id).toggleClass("active")
+                    return fd
+                    }
+
+                }
+            });
+        return false;
+    }
+        </script>

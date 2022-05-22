@@ -1,0 +1,47 @@
+﻿@model List<ormilitarism.Models.title>
+@{
+    ViewBag.Title = "waitingroom";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+
+<h2>waitingroom</h2>
+@foreach (var basliqlar in Model)
+{
+
+    <div class="col-lg-6 mb-4">
+
+        <!-- Illustrations -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">@basliqlar.titlename</h6>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    @foreach (var item in basliqlar.Posts.First().Postimgs)
+                    {
+
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                             src="@item.imgname" alt="...">
+                    }
+                </div>
+                <p>
+                    @basliqlar.Posts.First().postmezmun
+                </p>
+                @*<a target="_blank" rel="nofollow" href="https://undraw.co/">
+                        Browse Illustrations on
+                        unDraw &rarr;
+                    </a>*@
+            </div>
+        </div>
+
+        <!-- Approach -->
+
+
+    </div>
+    <a href="~/admin/success/@basliqlar.titleid" class="btn-success text-decoration-none ml-2 mt-3" style="border-radius:5px; padding: 30px; float: left"> Təsdiqlə</a>
+    <a href="~/admin/danger/@basliqlar.titleid" class="btn-danger text-decoration-none ml-2 mt-3" style="border-radius: 5px; padding: 30px; float: left"> Sil</a>
+}

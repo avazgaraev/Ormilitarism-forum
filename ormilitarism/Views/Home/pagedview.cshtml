@@ -1,0 +1,31 @@
+﻿@using ormilitarism.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<title>
+
+<style>
+    .pagination {
+        display: flex
+    }
+
+        .pagination li.active a {
+            background-color: transparent;
+            color: black;
+            cursor: auto
+        }
+</style>
+<div class="m20">
+    <div class="select">
+        <br />
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+   {
+       DisplayLinkToIndividualPages = true,
+       DisplayPageCountAndCurrentLocation = false,
+       MaximumPageNumbersToDisplay = 5,
+   })
+
+
+        @*<i class="fa-solid fa-angle-down"></i>*@
+
+    </div>
+</div>

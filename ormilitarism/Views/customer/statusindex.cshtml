@@ -1,0 +1,20 @@
+﻿@model ormilitarism.Models.status
+@{
+    ViewBag.Title = "statusindex";
+    Layout = "~/Shared/admin.cshtml";
+}
+@Html.Action("basliqadlar", "admin")
+@Html.Action("adminpart", "admin")
+<form method="post">
+
+    <input name="statusad" value="@Model.statusad" class="form-control" placeholder="statusad" />
+
+    <input name="likecount" value="@Model.likecount" class="form-control" placeholder="bu status ucun minimum like sayi" />
+
+    <input name="postcount" value="@Model.postcount" class="form-control" placeholder="bu status ucun minimum post sayi" />
+
+    <input name="titlecount" value="@Model.titlecount" class="form-control" placeholder="bu status ucun minimum basliq sayi" />
+
+    <button>Tesdiqle</button>
+</form>
+

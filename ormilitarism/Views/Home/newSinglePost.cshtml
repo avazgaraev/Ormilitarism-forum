@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "newSinglePost";
+    Layout = "~/Shared/userlayout.cshtml";
+}
+@Html.Action("partnav", "home")
+<section id="indexContent" class="container">
+    <section id="contentInner" class="dflex w-100">
+        <div class="w-30 left  ">
+            @Html.Action("daily", "home")
+
+            <div class="w-100 second">
+                <h3 style="display: block;">Bütün zamanlarda ən çox oxunanlar</h3>
+
+                <ul>
+                    <li><a href="#">birinci qarabağ müharibəsi (12)</a></li>
+
+                    <li>
+                        <a href="#">azərbaycan hhq (3)</a>
+                    </li>
+                    <li><a href="#">ssg90 (1)</a></li>
+
+                    <li><a href="#">psv eindhoven Lorem ipsum dolor. (1)</a></li>
+                    <li><a href="#">radiasiya (2)</a></li>
+                    <li><a href="#">1979 (4)</a></li>
+
+
+                </ul>
+                <a href="/moreTopics.html" class="btnTopics">
+                    daha çoxu...
+                </a>
+            </div>
+        </div>
+
+
+        <div class="w-70 right ">
+
+                    <div class="newForm">
+                        <div class="w-100">
+                            <form method="post" enctype="multipart/form-data">
+                                <label for="topicname">
+                                    <i class="fa-solid fa-circle-info"></i> Mövcud başlığı qeyd edin
+                                    və ya yeni başlıq yaradın.
+                                </label>
+                                <input class="w-50" type="text" placeholder="başlıq adı" id="titlename" name="titlename">
+
+                                <label class="mb20" for="topicname">
+                                    <i class="fa-solid fa-circle-info"></i> Mətni daxil
+                                    edin. Başqa posta və ya xarici mənbəyə keçid verə bilərsiniz.
+                                </label>
+
+                                <button class="btnLight alertTag">
+                                    bax:
+                                </button>
+                                <button class="btnLight alertLink">
+                                    xarici keçid
+                                </button>
+
+                                <textarea name="postmezmun" class="w-100" id="postTexter" placeholder="ukrayna silahlı qüvvələri" cols="30"
+                                          rows="10" ></textarea>
+
+                                <label class="mb20" for="topicname">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    Ən çoxu 8 ədəd olmaqla şəkillər əlavə edə bilərsiniz. Maksimum şəkil ölçüsü: 2 mb.
+                                </label>
+                                <input class="btnLight" type="file" id="imglar" accept="image/*" multiple name="imglar">
+                                <br>
+                                <input class="btnLight m20" type="submit" value="Paylaş">
+
+                                <p>Basliginiz ve postunuz admin terefinden tesdiqlendikden sonra saytda aktiv olacaq.</p>
+
+                            </form>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+    </section>
+</section>
+

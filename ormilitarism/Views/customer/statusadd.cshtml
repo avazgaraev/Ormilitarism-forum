@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "statusadd";
+    Layout = "~/Shared/admin.cshtml";
+}
+@Html.Action("basliqadlar", "admin")
+@Html.Action("adminpart", "admin")
+<form method="post">
+
+    <input name="statusad" class="form-control" placeholder="statusad" />
+
+    <input name="likecount" class="form-control" placeholder="bu status ucun minimum like sayi" />
+
+    <input name="postcount" class="form-control" placeholder="bu status ucun minimum post sayi" />
+
+    <input name="titlecount" class="form-control" placeholder="bu status ucun minimum basliq sayi" />
+
+    <button>Tesdiqle</button>
+</form>

@@ -1,0 +1,49 @@
+﻿@model List<ormilitarism.Models.title>
+
+
+
+
+    <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="" id="alertsDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <!-- Counter - Alerts -->
+            @if (@Model.Where(x => x.sorguid == 1).Count() > 0)
+            {
+
+                <span class="badge badge-danger badge-counter">@Model.Where(x => x.sorguid == 1).Count()</span>
+            }
+            else if (@Model.Where(x => x.sorguid == 1).Count() > 9)
+            {
+
+                <span class="badge badge-danger badge-counter">9+</span>
+            }
+            else if (@Model.Where(x => x.sorguid == 1).Count() == 0)
+            {
+
+            }
+        </a>
+        <!-- Dropdown - Alerts -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+             aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+                Alerts Center
+            </h6>
+            @foreach (var item in Model.Where(x => x.sorguid == 1).Take(3))
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/admin/basliqdetal/@item.titleid">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-primary">
+                            <i class="fas fa-file-alt text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@item.titleregister</div>
+                        <span class="font-weight-bold">@item.titlename</span>
+                    </div>
+                </a>
+            }
+
+            <a class="dropdown-item text-center small text-gray-500" href="~/admin/waitingroom">Show All Alerts</a>
+        </div>
+    </li>

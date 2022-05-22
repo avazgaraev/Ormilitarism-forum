@@ -1,0 +1,30 @@
+﻿@model List<ormilitarism.Models.favorit>
+@{
+    ViewBag.Title = "favdetal";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+<h2>favdetal</h2>
+
+@foreach (var item in Model)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Basliq: @item.Post.Title.titlename</h6>
+        </div>
+        <div class="card-body">
+            <p>
+                Save edilen post: @item.Post.postmezmun
+            </p>
+            <p>Beyenen: @item.Post.Customer.customername</p>
+        </div>
+    </div>
+
+    <h3> </h3>
+
+
+
+
+
+}
+

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Shared/userlayout.cshtml";
+}
+
+
+
+
+        <div class="w-70 w-100  ">
+
+            <div class="newForm">
+                <div class="w-100">
+                    <form method="post">
+                        <h5>Yazar adınız:</h5>
+
+                        <input class="w-50" type="text" placeholder="başlıq adı" id="customername" name="customername">
+
+
+                        <h5>Şifrə:</h5>
+                        <input class="w-50" type="password" placeholder="başlıq adı" id="customerpass"
+                               name="customerpass">
+
+                        <br>
+                        <div class="remember">
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                            <span>Xatırla məni</span>
+                        </div>
+                        <br />
+                        <p style="color:red; display:inline-block">@ViewBag.message</p>
+
+                        <br>
+                        <input class="btnLight m20" type="submit" value="İdxal ol">
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+

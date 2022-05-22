@@ -1,0 +1,44 @@
+﻿@model List<ormilitarism.Models.report>
+@{
+    ViewBag.Title = "bildirisler";
+    Layout = "~/Shared/userlayout.cshtml";
+}
+
+@Html.Action("partnav", "home")
+@Html.Action("reportpart", "home")
+
+<section id="indexContent" class="container">
+    <section id="contentInner" class="dflex w-100">
+        <div class="w-30 left  ">
+            <div id="partial">
+                @Html.Action("daily", "home")
+            </div>
+            @Html.Action("mostpop", "home")
+
+        </div>
+        <div class="w-70 right">
+            <h3 class="exo my20">Bildirisler</h3>
+            @foreach (var bildirisler in Model)
+            {
+                if (bildirisler.statusid != null)
+                {
+                    <h1>
+                        @bildirisler.Status.statusad-lara ozel.
+                    </h1>
+
+                        <span class="w-90">@bildirisler.reportmezmun</span> <span class="w-10" href="#">
+
+                        </span>
+                }
+                else
+                {
+                    <h1>
+                        Umumi bidiris
+                    </h1>
+                        <span class="w-90">@bildirisler.reportmezmun</span> <span class="w-10" href="#">
+
+                        </span>
+                }
+            }
+        </div>
+

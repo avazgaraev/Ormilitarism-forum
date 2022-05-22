@@ -1,0 +1,106 @@
+﻿@model ormilitarism.Models.admin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <section class="vh-100" style="background-color: #2779e2;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-9">
+
+                    <h1 class="text-white mb-4">Apply for a job</h1>
+
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body">
+                            @using (Html.BeginForm("Register", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="row align-items-center pt-4 pb-3">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0">İstifadəçi adı</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+
+                                        <input type="text" placeholder="başlıq adı" id="adminname" name="adminname" class="form-control form-control-lg" />
+                                        <p style="color:red; display:inline-block">@ViewBag.message</p>
+                                        @Html.ValidationMessageFor(x => x.adminname, "", new { @style = "color:red" })
+
+                                    </div>
+                                </div>
+                                <hr class="mx-n3">
+
+
+
+
+                                <div class="row align-items-center py-3">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0">Şifrə:</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+
+                                        <input class="w-50" type="password" placeholder="başlıq adı" id="adminpass" name="adminpass">
+                                        @Html.ValidationMessage("adminpass", new { @style = "color:red" })
+
+                                    </div>
+                                </div>
+
+                                <hr class="mx-n3">
+
+                                <div class="row align-items-center py-3">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0">Şifrə təkrar:</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+
+                                        <input class="w-50" type="password" placeholder="başlıq adı" id="confirmpass" name="confirmpass">
+                                        @Html.ValidationMessage("confirmpass", new { @style = "color:red" })
+
+                                    </div>
+                                </div>
+
+                                <hr class="mx-n3">
+
+                                <div class="row align-items-center py-3">
+                                    <div class="col-md-3 ps-5">
+
+                                        <h6 class="mb-0">Profil şəkli</h6>
+
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+
+                                        <input class="w-50" type="file" accept="image/*" id="adminimg" name="adminimg">
+
+
+                                    </div>
+                                </div>
+
+                                <hr class="mx-n3">
+
+                                <div class="px-5 py-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">Send application</button>
+                                </div>
+                            }
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

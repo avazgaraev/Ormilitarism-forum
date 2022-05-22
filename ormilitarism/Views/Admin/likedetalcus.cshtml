@@ -1,0 +1,15 @@
+﻿@model List<ormilitarism.Models.like>
+@{
+    ViewBag.Title = "likedetalcus";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+@foreach (var item in Model)
+{
+    <h1>@item.Post.Title.titlename</h1>
+
+    <p>@item.Customer.customername @item.Post.postmezmun postunu beyendi</p> 
+}

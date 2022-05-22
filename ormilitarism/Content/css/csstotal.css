@@ -1,0 +1,630 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: 0.3s all;
+}
+
+html {
+    font-size: 20px;
+
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+section {
+    width: 100%;
+
+}
+
+.juspb {
+    justify-content: space-between;
+}
+
+.container {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+.mcontainer {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+li {
+    list-style: none;
+}
+
+.dflex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icon {
+    height: 1rem
+}
+
+.dflexn {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.w-16 {
+    width: 16%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-33 {
+    width: 33%;
+}
+
+.w-34 {
+    width: 34%;
+}
+
+.w-35 {
+    width: 35%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+
+.w-50 {
+    width: 50%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-75 {
+    width: 75%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.ws-25 {
+    width: 25%;
+}
+
+.ws-30 {
+    width: 30%;
+}
+
+.ws-50 {
+    width: 50%;
+}
+
+.ws-70 {
+    width: 70%;
+}
+
+.ws-75 {
+    width: 75%;
+}
+
+
+
+.m20 {
+    margin: 1rem;
+}
+
+.my20 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mb20 {
+    margin-bottom: 1rem;
+}
+
+.mb30 {
+    margin-bottom: 1.5rem;
+}
+
+body {
+    background-color: #b30000;
+
+    min-height: 30rem;
+
+}
+
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 201, 201);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
+*/ .boz {
+    color: #888888;
+}
+
+button {
+    border: 0;
+}
+
+.btnPaper {
+    display: inline-block;
+    padding: .3rem 0rem;
+    white-space: nowrap;
+    text-align: center;
+    color: whitesmoke;
+    background-color: #E59C23;
+    cursor: pointer;
+    font-size: .9rem;
+    border-radius: 0.25rem;
+}
+
+
+.btnPaper:hover {
+    background-color: #00AB9A;
+}
+
+
+.btnPaper .spinner {
+
+    animation: spinnerAnim 2.5s linear infinite;
+
+}
+
+.btnTopics {
+    display: inline-block;
+    padding: .3rem .6rem;
+    white-space: nowrap;
+    text-align: center;
+    color: whitesmoke;
+    background-color: #E59C23;
+    cursor: pointer;
+    font-size: .9rem;
+    border-radius: 0.25rem;
+    font-family: 'Exo', sans-serif;
+
+}
+
+.btnTopics:hover {
+    background-color: #00AB9A;
+}
+
+.exo {
+    font-family: 'Exo', sans-serif;
+
+}
+
+@keyframes spinnerAnim {
+    1% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+
+    }
+}
+
+.post1 {
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+.post1 .inner {
+    border-radius: 0.25rem;
+    padding-left: 0;
+}
+
+.post1 .inner h4 {
+    font-size: .85rem;
+}
+
+
+.post1 .inner p {
+    font-size: .7rem;
+    margin-top: 0.5rem;
+}
+
+.post1 a:hover {
+    text-decoration: underline;
+}
+
+.showRest {
+    font-style: italic;
+    color: #00AB9A;
+    font-weight: 500;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.showRest .icon {
+    font-size: 0.6rem;
+    height: .8rem;
+    line-height: 100px;
+    vertical-align: -.1rem;
+}
+
+.post1 .more {
+    display: none;
+}
+
+.post1 .icons,
+.post1 .other {
+    font-size: 0.83rem;
+    cursor: pointer;
+
+}
+
+.post1 .icons a:hover,
+.post1 .other a:hover {
+    text-decoration: none;
+    /* background-color: rgb(201, 201, 201); */
+    border-radius: 0.25rem;
+}
+
+.post1 .icons a {
+
+    display: inline-block;
+    min-width: 25%;
+    text-align: left;
+    padding: 0.2rem 0.5rem;
+    /* margin-right: .5rem; */
+    font-weight: 600;
+
+}
+
+.post1 .icons a {
+    transition: .1s;
+}
+
+.post1 .icons a{
+    color: #464646;
+    filter: 0;
+
+}
+
+.post1 .icons a i {
+    margin-right: 0.2rem;
+
+}
+
+.post1 .icons a.active {
+    color: #00AB9A;
+
+}
+
+
+.post1 .share>p {
+    transition: 0.1s;
+    display: inline-block;
+    text-align: center;
+    padding: 0.2rem 0.5rem;
+    margin-right: .5rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.post1 .share p:hover {
+
+    background-color: #c9c9c9;
+}
+
+.post1 .share p:active {
+    background-color: #838383;
+}
+
+.post1 .share .shareList {
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    display: none;
+    font-size: .8rem;
+    background-color: #fff;
+    text-align: left;
+    border: 1px solid #464646;
+    border-radius: 0.15rem;
+    transform: translate(-100%);
+}
+
+.post1 .share .shareList.active {
+    display: inline-block;
+}
+
+.post1 .share .shareList a {
+    display: block;
+    padding: .3rem .3rem;
+    white-space: nowrap;
+
+}
+
+.post1 .share .shareList a:hover {
+    background-color: #c9c9c9;
+    color: rgb(14, 134, 88);
+}
+
+.post1 .postUser {
+    justify-content: flex-end;
+}
+
+.post1 .postUser .profPhoto {
+    justify-content: flex-end;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #496075;
+    margin-right: 1rem;
+}
+
+.post1 .postUser .profPhoto img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.post1 .postUser .postInfo {
+    display: block;
+    margin-right: .8rem;
+}
+
+.post1 .postInfo a {
+    text-align: right;
+    font-size: .75rem;
+    color: #00AB9A;
+    font-weight: 500;
+    display: block;
+    width: 8rem;
+}
+
+
+.post1 .postInfo p {
+    text-align: right;
+    text-align: right;
+    display: block;
+    font-size: .6rem;
+    color: #464646;
+}
+
+
+
+.post1 .imgHolder img {
+    width: 100%;
+    height: 100%;
+    transition: 0;
+    object-fit: cover;
+    padding: .5rem;
+}
+
+.post1 .imgHolder>div {
+    display: inline-block;
+    height: 5.6rem;
+    width: 5.6rem;
+    transition: none;
+    position: relative;
+    border: .3rem solid transparent;
+    cursor: pointer;
+}
+
+.post1 .imgHolder span {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    left: 0;
+    top: 0;
+    color: white;
+    background-color: #E59C23;
+    text-align: center;
+    font-family: 'Exo', sans-serif;
+    padding-top: .2rem;
+    font-size: .75rem;
+    border-radius: .25rem;
+
+}
+
+.post1 .imgHolder>div.active {
+    height: auto;
+    object-fit: cover;
+    padding: .6rem;
+    background-color: #FFECCC;
+}
+
+.post1 .imgHolder .w-100 {
+    display: none;
+}
+
+
+/* sewcim qutusu tertibaty: */
+.select {
+    display: inline-block;
+    position: relative;
+}
+
+.select a {
+    padding: .3rem .5rem;
+    font-size: .7rem;
+    color: #fff;
+    background-color: #E59C23;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+    border-radius: .25rem;
+    padding-right: 2rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.afterSelect {
+    display: inline-block;
+    padding: .2rem .5rem;
+    outline: 0;
+    font-family: 'Exo', sans-serif;
+}
+
+/*.select i {
+    font-size: .7rem;
+    position: absolute;
+    top: .55rem;
+    left: calc(100% - 1rem);
+    color: #fff;
+    pointer-events: none;
+
+}
+*/
+.select select:hover,
+.select:focus {
+    outline: none;
+    border: 1px solid #bbbbbb;
+}
+
+
+
+.newForm {
+    padding: 1rem;
+    background-color: #00ACAA;
+}
+
+.newForm input[type="submit"] {
+    border: 0;
+    background-color: #E59C23;
+    font-size: 1rem;
+    color: #fff;
+    padding: .4rem 1rem;
+    margin: 1rem 0;
+}
+
+.newForm input[type="submit"]:hover {
+    background-color: #fff;
+    color: #496075;
+}
+
+.newForm textarea {
+    padding: .7rem;
+    border: 0;
+    border-radius: .2rem;
+    border: 1px solid gray;
+    margin: 1rem 0;
+}
+
+.newForm textarea:focus,
+.newForm textarea:active {
+    outline: 0;
+
+}
+
+.btnLight {
+    font-weight: 600;
+    padding: .5rem .4rem;
+    border-radius: .25rem;
+    cursor: pointer;
+    display: inline-block;
+
+    background-color: #E59C23;
+    color: #fff;
+}
+
+.btnLight:hover {
+    background-color: #dfdfdf;
+    color: #00ACAA;
+}
+
+
+.newForm input[type="text"],
+.newForm input[type="password"] {
+    padding: .7rem;
+    border: 0;
+    border-radius: .2rem;
+    border: 1px solid gray;
+    margin: .7rem 0;
+}
+
+.newForm input[type="text"]:focus,
+.newForm input[type="password"] {
+    outline: 0;
+}
+
+.newForm label {
+    display: block;
+    color: #fff;
+    font-size: .65rem;
+}
+
+.newForm label i {
+    font-size: .8rem;
+    vertical-align: -.1rem;
+}
+
+.newForm h5 {
+    color: #fff;
+}
+
+.newForm .remember span {
+    color: #fff;
+    font-size: .8rem;
+}
+
+.btnIce{
+    font-size: .8rem;
+    background-color: #fff;
+    color: #00ACAA;
+    font-weight: 600;
+    padding: .2rem .6rem;
+    display: inline-block;
+    border: 2px solid #00AB9A;
+    border-radius: .25rem;
+}
+
+.btnIce:hover{
+    background-color: #dddddd;
+}
+
+.sorters{
+    font-size: .8rem;
+}
+
+.sorters a{
+    color: #E59C23;
+    font-weight: 600;
+}
+
+.sorters a:hover{
+    text-decoration: underline;
+}

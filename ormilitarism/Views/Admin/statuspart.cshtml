@@ -1,0 +1,41 @@
+﻿@*@model IEnumerable<ormilitarism.Models.statuschart>*@
+@model List<ormilitarism.Models.status>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Statuslar uzre istifadeci sayi</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Category</th>
+                    <th>Progress bar</th>
+                    <th style="width: 40px">Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int sira = 0;}
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@{sira++;}@sira</td>
+                    @{ decimal st = Decimal.Divide(item.Customers.Count(), Model.Select(x => x.Customers).Count()); }
+                    @{ int width = Convert.ToInt32(st * 100); }
+                        <td>@item.statusad</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" style="width: @st%;"></div>
+                            </div>
+                        </td>
+                        <td>@item.Customers.Count()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

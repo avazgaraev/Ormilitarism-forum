@@ -1,0 +1,32 @@
+﻿@model ormilitarism.Models.post
+@{
+    ViewBag.Title = "postdetal";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">@Model.Title.titlename</h6>
+    </div>
+    <div class="card-body">
+        <p>
+            @Model.postmezmun
+        </p>
+        <p>@Model.Customer.customername</p>
+        @foreach (var item in Model.Postimgs)
+        {
+            <img class="col-md-3" src="@item.imgname" />
+        }
+    </div>
+</div>
+<a href="~/admin/delsimppost/@Model.postid" class="text-danger text-decoration-none">Sil</a>
+
+<h3> </h3>
+
+
+
+

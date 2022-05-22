@@ -1,0 +1,17 @@
+﻿@model ormilitarism.Models.admin
+@{
+    ViewBag.Title = "settings";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+@using (Html.BeginForm("settings", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.TextBoxFor(x => x.adminname)
+    <p>Parolunuz: <input type="password" name="adminpss" id="adminpss" value="" /></p>
+    @ViewBag.mesparol
+    <p> new password: <input type="password" name="adminpass" id="adminpass" value="" /></p>
+    <input type="file" id="adminimg" name="adminimg" value="" />
+    <button>submit</button>
+}

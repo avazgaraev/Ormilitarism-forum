@@ -1,0 +1,76 @@
+﻿@*@Html.ValidationSummary(false, "Please fix the following error and then submit the form")*@
+
+
+
+@model ormilitarism.Models.customer
+
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Shared/userlayout.cshtml";
+}
+
+
+
+
+<div class="w-70 right ">
+
+    <div class="newForm">
+        <div class="w-100">
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <h5>Saytda göstəriləcək adınız:</h5>
+                @Html.AntiForgeryToken()
+
+                <input class="w-50" type="text" placeholder="başlıq adı" id="customername" name="customername">
+                <p style="color:red; display:inline-block">@ViewBag.message</p>
+                @*<label class="mb30">
+                        <i class="fa-solid fa-circle-info"></i> adınınız 8-24 simvol arası və
+                        unikal olmalıdır. Nümunə: "əsgər_123"
+                    </label>*@
+
+                @Html.ValidationMessageFor(x=>x.customername, "", new {@style = "color:red" })
+
+                @*@Html.ValidationMessage("customername", new { @style = "color:red" })*@
+
+
+                <h5>Şifrə:</h5>
+                <input class="w-50" type="password" placeholder="başlıq adı" id="customerpass" name="customerpass">
+                @*<label class="mb30">
+                        <i class="fa-solid fa-circle-info"></i> Şifrəniz 8-24 simvol arası 0-9
+                        rəqəmləri və ingilis əlifbası hərflərindən ibarət olmalıdır.
+                    </label>*@
+
+                @Html.ValidationMessage("customerpass", new { @style = "color:red" })
+
+
+                @*@Html.ValidationMessageFor(x=>x.customerpass, "", new {@style = "color:red" })*@
+
+
+                @*@Html.Raw(HttpUtility.HtmlDecode(Html.ValidationMessageFor(m => m.customerpass).ToHtmlString()))*@
+
+
+
+
+                <h5>Şifrə təkrar:</h5>
+                <input class="w-50" type="password" placeholder="başlıq adı" id="confirmpass" name="confirmpass">
+                @Html.ValidationMessage("confirmpass", new { @style = "color:red" })
+                <input class="w-50" type="file" accept="image/*" id="customerimg" name="customerimg">
+
+                <br>
+
+                <br>
+                @*@Html.ValidationSummary(true, "Please fix the following error and then submit the form:", new { @style = "color:red" })*@
+                <input class="btnLight m20" type="submit" value="Şəplə">
+            }
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+

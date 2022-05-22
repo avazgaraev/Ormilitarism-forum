@@ -1,0 +1,16 @@
+﻿@model List<ormilitarism.Models.post>
+
+@{
+    ViewBag.Title = "postdetalcus";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+@foreach (var item in Model)
+{
+    <h1>@item.Title.titlename basligi altinda</h1>
+
+    <p>@item.Customer.customername @item.postmezmun postunu yazdi</p>
+}
+

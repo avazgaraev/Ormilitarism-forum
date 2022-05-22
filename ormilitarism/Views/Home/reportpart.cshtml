@@ -1,0 +1,8 @@
+﻿@model List<ormilitarism.Models.report>
+
+
+@foreach (var item in Model.Where(x=>x.statusid==null && x.reportavailable==true))
+{
+
+    <div>@item.reportmezmun</div>
+}

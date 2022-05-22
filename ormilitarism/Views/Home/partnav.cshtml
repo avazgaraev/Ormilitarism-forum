@@ -1,0 +1,64 @@
+﻿@model ormilitarism.Models.title
+@{
+    var cookie = Request.Cookies["users"];
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+
+
+
+<nav сlass="container">
+    <section id="mainNav" class="container dflex">
+        <a href="~/home/index">
+            <img src="~/Content/img/logoBanner.jpg" alt="">
+        </a>
+
+        <div class="mainTabs">
+            <a id="navClose"> <i class="fa-solid fa-bars"> </i> bağla</a>
+            @if (Session["customername"] != null)
+            {
+
+                <a href="~/customer/myProfile/">Hesabım</a>
+                <a href="~/customer/bildirisler/">Bildirisler</a>
+                <a href="~/home/favview/">Fav</a>
+                <a href="~/home/logout/">Hesabdan cixis</a>
+            }
+
+            else
+            {
+                <a href="~/home/register">Hesab yarat</a>
+                <a href="~/home/login">Daxil ol</a>
+
+            }
+
+            <a class="postTab" href="~/home/newSinglePost">Post paylaş</a>
+        </div>
+        <a id="navOpen" href="~/home/Index"><i class="fa-solid fa-bars"></i></a>
+
+    </section>
+
+
+
+
+
+
+    <section id="blackNav" class="container">
+        <form class="blackForm" method="post" action="~/home/searchview/">
+            @*@using (Html.BeginForm())
+                {*@
+            @Html.AntiForgeryToken()
+            <div>
+                @Html.EditorFor(model => model.titlename, new { htmlAttributes = new { @class = "form-control", @placeholder = "Wanted" } })
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            @*}*@
+        </form>
+    </section>
+
+</nav>
+
+
+
+
+

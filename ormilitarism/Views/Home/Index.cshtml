@@ -1,0 +1,370 @@
+﻿
+@using ormilitarism.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<title>
+
+@{
+    Layout = "~/Shared/userlayout.cshtml";
+    var cookie = Request.Cookies["users"];
+}
+
+
+
+
+
+
+
+@Html.Action("partnav")
+@Html.Action("reportpart")
+
+<section id="indexContent" class="container">
+    <section id="contentInner" class="dflex w-100">
+        <div class="w-30 left  ">
+            <div id="partial">
+                @Html.Action("daily", "home")
+            </div>
+            @Html.Action("mostpop", "home")
+
+        </div>
+
+
+
+        <div class="w-70 right">
+            <h3 class="exo my20">Önə çıxan postlar</h3>
+            @foreach (var basliqlar in Model)
+            {
+                if (basliqlar.Posts.Count() > 0)
+                {
+
+                    var postlar = basliqlar.Posts.OrderBy(x => x.posttime).First();
+
+
+
+
+                <div class="post1">
+                    <div class="inner">
+                        <a href="~/home/onetopic/@basliqlar.titleid">
+                            <h4>@basliqlar.titlename </h4>
+                        </a>
+                        @{int i = postlar.postmezmun.Length;}
+
+                        @if (postlar.postmezmun.Count() < 50)
+                        {
+                            <p>
+                                @postlar.postmezmun
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @postlar.postmezmun.Substring(0, 50)<span class="dots">...</span><span class="more">@postlar.postmezmun.Substring(50, i - 50)</span>
+                            </p>
+                            <a class="showRest" onclick="more()">
+                                ardını oxu <i class="fa-solid fa-angles-down"></i>
+
+                            </a>
+                            <script>
+                                $('.more').hide()
+                                function more() {
+                                    $('.more').show()
+
+                                }
+                            </script>
+                        }
+
+
+                    </div>
+
+                    <div class="imgHolder dflex">
+
+                        @foreach (var postsekil in postlar.Postimgs)
+                        {
+                            if (postsekil.imgname is null)
+                            {
+
+                            }
+                            else
+                            {
+
+                                <div>
+
+                                    <img src="@postsekil.imgname" />
+                                </div>
+                            }
+
+                        }
+
+
+
+
+                        <img class="w-100 imgMain" src="" alt="">
+                    </div>
+
+                    <div class="dflex juspb">
+                        <div class="icons">
+                            @*<form class="likeform" method="post" action="~/home/likeninc/">
+                                    @Html.HiddenFor(x => postlar.postid, new { @class = "postidpp" })
+                                    @{int postaid = @postlar.postid;}
+
+                                    <button class="like" style="cursor:pointer"  >
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <br> <span class="likec" name="likec">@postlar.postlikecount</span>
+                                    </button>
+                                </form>*@
+                            @{ var likelar = postlar.Likes.Where(x => x.postid == postlar.postid).ToList();}
+                            @if (likelar.Count() == 0)
+                            {
+                                <a onclick="DeleteSchedule(@postlar.postid)" class="like  " id="like_@postlar.postid" style="cursor:pointer">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    <br> <span class="likec @postlar.postid" id="@postlar.postid" name="likec">@postlar.postlikecount</span>
+                                </a>
+                            }
+                            else if (likelar.Count() > 0)
+                            {
+
+                                if (likelar.Select(x => x.custname).Contains(HttpContext.Current.User.Identity.Name))
+                                {
+
+
+
+                                    <a onclick="DeleteSchedule(@postlar.postid)" class="like active " id="like_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <br> <span class="likec @postlar.postid" id="@postlar.postid" name="likec">@postlar.postlikecount</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="DeleteSchedule(@postlar.postid)" class="like" id="like_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <br> <span class="likec @postlar.postid" id="@postlar.postid" name="likec">@postlar.postlikecount</span>
+                                    </a>
+                                }
+
+                            }
+
+
+
+
+                            @{ var favlar = postlar.Favorits.Where(x => x.postid == postlar.postid).ToList();}
+                            @if (favlar.Count() == 0)
+                            {
+                                <a onclick="favaction(@postlar.postid)" class="favor  " id="favorite_@postlar.postid" style="cursor:pointer">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                    <br> <span class="favorc favcount_@postlar.postid" id="fav_@postlar.postid" name="likec">@postlar.postfavcount</span>
+                                </a>
+                            }
+                            else if (favlar.Count() > 0)
+                            {
+
+                                if (favlar.Select(x => x.custname).Contains(HttpContext.Current.User.Identity.Name))
+                                {
+
+
+
+                                    <a onclick="favaction(@postlar.postid)" class="favor active " id="favorite_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <br> <span class="favorc favcount_@postlar.postid" id="fav_@postlar.postid" name="likec">@postlar.postfavcount</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a onclick="favaction(@postlar.postid)" class="favor" id="favorite_@postlar.postid" style="cursor:pointer">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <br> <span class="favorc favcount_@postlar.postid" id="fav_@postlar.postid" name="likec">@postlar.postfavcount</span>
+                                    </a>
+                                }
+
+                            }
+
+                        </div>
+                        <div class="share">
+                            <p class=" shareIcon">
+                                <i class="fa-solid fa-ellipsis"></i>
+                                <span class="shareList">
+                                    <a href="#">Paylaş</a>
+                                    <a href="#">Şikayət et</a>
+                                    <a href="~/home/onetopic/@basliqlar.titleid">Cavabla</a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="postUser dflex">
+                        <div class="postInfo  ">
+                            <a href="#">@@@postlar.Customer.customername</a>
+                            <p>@postlar.posttime.ToShortDateString()</p>
+                        </div>
+                        <div class="profPhoto">
+                            <img src="@postlar.Customer.customerimg" alt="">
+                        </div>
+                    </div>
+                </div>
+                                    }
+                                }
+          
+            <style>
+                .pagination {
+                    display: flex
+                }
+
+                    .pagination li.active a {
+                        background-color: transparent;
+                        color: black;
+                        cursor: auto
+                    }
+            </style>
+            <div class="m20">
+                <div class="select">
+                    <br />
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+               {
+                   DisplayLinkToIndividualPages = true,
+                   DisplayPageCountAndCurrentLocation = false,
+                   MaximumPageNumbersToDisplay = 5,
+               })
+
+
+                    @*<i class="fa-solid fa-angle-down"></i>*@
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <script>
+        function DeleteSchedule(id) {
+            var likedcount = parseInt($('#' + id).text())
+            //console.log($(this).data("id"))
+             @*var url = '@Url.Action("likeinc", "home")?id=' + id;*@
+            $.ajax({
+                type: 'POST',
+                url: '/Home/likeinc/' + id,
+                data: { id: id, likecount: likedcount },
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function func(fd) {
+                    /*$('.likec').hasClass('.' + id).html(fd)*/
+                    if ($('.likec').hasClass(id)) {
+                        $('#' + id).html(fd)
+                        console.log(fd)
+                        $('#like_'  + id ).toggleClass("active")
+                    return fd
+                    }
+
+                }
+            });
+        return false;
+    }
+        </script>
+
+        <script>
+        function favaction(id) {
+            var favcount = parseInt($('#fav_' + id).text())
+            console.log(favcount)
+            //console.log($(this).data("id"))
+             @*var url = '@Url.Action("likeinc", "home")?id=' + id;*@
+            $.ajax({
+                type: 'POST',
+                url: '/Home/favinc/' + id,
+                data: { id: id, favcount: favcount },
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function func(fd) {
+                    /*$('.likec').hasClass('.' + id).html(fd)*/
+                    if ($('.favorc').hasClass('favcount_' + id)) {
+                        $('#fav_' + id).html(fd)
+                        console.log(fd)
+                        $('#favorite_'  + id).toggleClass("active")
+                    return fd
+                    }
+
+                }
+            });
+        return false;
+    }
+        </script>
+
+
+        @*<script>
+                $('.likeform').submit(function(res) {
+                    res.preventDefault()
+                    var PostData = {};
+                    var likedcount = parseInt($('.likec').text())
+                    //var id = parseInt($('.postidpp').val())
+                    var formdata = $(this).serialize();
+                    var index = formdata.lastIndexOf("=");
+                    var id = formdata.slice(index+1);
+
+                    console.log(id)
+                    console.log(likedcount)
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/likeinc/' + id,
+                        data: { id:id, likecount: likedcount },
+                        //data: formdata,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (fd) {
+                            console.log(fd)
+                            console.log(likedcount)
+                            if (id == parseInt($('.postidpp').val())) {
+                                $('.likec').html(fd)
+                                $('.like').toggleClass("active")
+
+                            return fd
+                            }
+                        },
+                        error: function myfunction() {
+
+                        }
+                    })
+                    console.log(likedcount)
+
+                    })
+            </script>*@
+
+        @*<script>
+                $('.likeform').submit(function (res) {
+                    res.preventDefault()
+
+                    var did = $('.postidpp')
+                    var likedcount = parseInt($('.likec').text())
+
+                    var items = [];
+                    for (i = 0; i < did.length; i++)
+
+                    items.push($(did[i]).val());
+                    console.log(items)
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/likeinc/',
+                        data: { id: items, likecount: likedcount },
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (fd) {
+                            console.log(fd)
+                            if (id == parseInt($('.postidpp').val())) {
+                                $('.likec').html(fd)
+                                $('.like').toggleClass("active")
+
+                                return fd
+                            }
+                        },
+                        error: function myfunction() {
+
+                        }
+                    })
+
+                })
+
+            </script>*@
+

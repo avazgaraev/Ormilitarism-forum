@@ -1,0 +1,99 @@
+﻿@using ormilitarism.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<title>
+@{
+    ViewBag.Title = "dailyview";
+    Layout = "~/Shared/userlayout.cshtml";
+}
+
+@Html.Action("partnav", "home")
+<section id="indexContent" class="container">
+    <section id="contentInner" class="dflex w-100">
+        <div class="w-30 left  ">
+            @Html.Action("daily", "home")
+            @Html.Action("mostpop", "home")
+
+
+        </div>
+
+        <div class="w-70 right">
+            <h3 class="exo m20">Bu gunun Mövzulari</h3>
+            <div id="moreTopics">
+                <div class="w-80">
+                    @foreach (var item in Model)
+                    {
+                        <a class="dflex  " href="~/home/onetopic/@item.titleid">
+                            <span href="#" class="w-90">@item.titlename</span> <span class="w-10" href="#">
+                                (@item.postcount)
+                            </span>
+                        </a>
+                    }
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            @*<div class="m20">
+            <div class="select">
+                <select class=" exo">
+                    <option selected>1 </option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <i class="fa-solid fa-angle-down"></i>
+
+            </div> / <a href="#" class="afterSelect">17</a>
+        </div>*@
+
+            <style>
+                .pagination {
+                    display: flex
+                }
+
+                    .pagination li.active a {
+                        background-color: transparent;
+                        color: black;
+                        cursor: auto
+                    }
+            </style>
+            <div class="m20">
+                <div class="select">
+                    <br />
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+               {
+                   DisplayLinkToIndividualPages = true,
+                   DisplayPageCountAndCurrentLocation = false,
+                   MaximumPageNumbersToDisplay = 5,
+               })
+
+
+                    @*<i class="fa-solid fa-angle-down"></i>*@
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+    </section>
+</section>
+

@@ -1,0 +1,30 @@
+﻿@model ormilitarism.Models.report
+@{
+    ViewBag.Title = "reportview";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+<form method="post">
+
+    <h1>Report</h1>
+    @Html.TextAreaFor(x => x.reportmezmun, new { @style = "width:400px" })<br />
+    @Html.DropDownListFor(x => x.statusid, (List<SelectListItem>)ViewBag.val1, new { @id = "statuslar" })<br />
+    <label>herkese aciq</label>
+    <input type="checkbox" id="herkeseaciq" name="herkeseaciq" />
+    @Html.TextBoxFor(x => x.reportdeadline,  new { @type = "date"})
+    <button>Tesdiqle</button>
+</form>
+
+<script>
+    $('#herkeseaciq').click(function () {
+        if ($('#statuslar').attr('disabled')) {
+            $('#statuslar').removeAttr('disabled')
+        }
+        else {
+            $('#statuslar').prop('disabled', true)
+        }
+
+        })
+</script>

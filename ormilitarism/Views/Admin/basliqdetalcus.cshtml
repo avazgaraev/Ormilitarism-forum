@@ -1,0 +1,17 @@
+﻿@model List<ormilitarism.Models.title>
+
+@{
+    ViewBag.Title = "basliqdetalcus";
+    Layout = "~/Shared/admin.cshtml";
+}
+
+@Html.Action("basliqadlar")
+@Html.Action("adminpart")
+
+@foreach (var item in Model)
+{
+    <h1>@item.titlename</h1>
+
+    <p>@item.Customer.customername basligi yaratdi</p>
+    <p>Status: @item.Sorgu.sorguad</p>
+}

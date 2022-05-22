@@ -1,0 +1,30 @@
+﻿@model ormilitarism.Models.customer
+
+<div class="profileArea w-100 dflex">
+                <div class=" photo  ">
+                    <img src="@Model.customerimg" alt="">
+                </div>
+
+                <div class=" personal ws-70 right">
+                    <h6>@@@Model.customername</h6>
+                    <div class="dflex">
+                        <p class="personStat">
+                            @Model.postcount <br>
+                            yazı
+                        </p>
+                        <p class="personStat">
+                            @Model.likecount<br>
+                            bəyənmə
+                        </p>
+                        <p class="personStat">
+                            @Model.titlecount<br>
+                            başlıq
+                        </p>
+                    </div>
+
+                    <p class="persDate"><i>qatılma tarixi: @Model.registertime</i></p>
+                    <br>
+                    <p class="persNote"><i>"Şübhəsizdir ki həqiqət bir gün parlayacaqdır."</i></p>
+                    <a href="#" class="btnIce"><i class="fa-solid fa-gear"></i> sazla</a>
+                </div>
+            </div>

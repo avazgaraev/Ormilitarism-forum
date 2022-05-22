@@ -1,0 +1,76 @@
+﻿@model List<ormilitarism.Models.title>
+
+
+
+
+
+
+
+
+
+<div id="dedmaroz">
+
+    <div class="w-100 first">
+        <h3 style="display: block;">Günün başlıqları</h3>
+        <form action="" method="post" id="formdaily">
+
+            <button class="btnPaper w-100 refresher  exo" id="button">
+                yenilə <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+        </form>
+        <ul id="changeul">
+            @foreach (var item in Model)
+            {
+                <li><a href="~/home/onetopic/@item.titleid">@item.titlename (@item.postcount) </a></li>
+
+            }
+
+            @*<li>
+                    <a href="#">azərbaycan hhq (3)</a>
+                </li>
+                <li><a href="#">ssg90 (1)</a></li>
+
+                <li><a href="#">psv eindhoven Lorem ipsum dolor. (1)</a></li>
+                <li><a href="#">radiasiya (2)</a></li>
+                <li><a href="#">1979 (4)</a></li>
+                <li><a href="#">birinci qarabağ müharibəsi (12) </a></li>
+
+                <li>
+                    <a href="#">azərbaycan hhq (3)</a>
+                </li>
+                <li><a href="#">ssg90 (1)</a></li>
+
+                <li><a href="#">psv eindhoven Lorem ipsum dolor. (1)</a></li>
+                <li><a href="#">radiasiya (2)</a></li>
+                <li><a href="#">1979 (4)</a></li>*@
+
+
+        </ul>
+        <a href="/home/dailyview" class="btnTopics">
+            daha çoxu...
+        </a>
+    </div>
+
+</div>
+
+<script>
+    $('#formdaily').submit(function (res) {
+        res.preventDefault()
+        let formData = new FormData(this)
+        $.ajax({
+            type: 'GET',
+            url: '/Home/daily',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (formdata) {
+                $('#dedmaroz').empty();
+                $('#dedmaroz').html(formdata);
+                console.log($('#dedmaroz'))
+            }
+
+
+        })
+    })
+</script>
